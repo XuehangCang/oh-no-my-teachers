@@ -14,7 +14,7 @@ function handleSelect(id: string) {
 </script>
 
 <template>
-  <div class="min-h-screen bg-base-200 p-8 flex flex-col items-center">
+  <div class="min-h-screen bg-base-200 p-8 pt-24 flex flex-col items-center">
     <h1 class="text-4xl font-bold mb-8 text-primary animate__animated animate__fadeInDown">选择你的导师</h1>
     
     <div class="flex flex-wrap justify-center gap-8 animate__animated animate__fadeInUp">

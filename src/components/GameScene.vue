@@ -57,7 +57,7 @@ function goBack() {
     <div class="absolute inset-0 bg-white/40 backdrop-blur-sm pointer-events-none"></div>
 
     <!-- HUD: Top Bar -->
-    <div class="absolute top-0 left-0 w-full p-4 flex justify-between items-start z-20">
+    <div class="absolute top-16 left-0 w-full p-4 flex justify-between items-start z-20">
       <!-- Back Button -->
       <button class="btn btn-circle btn-ghost bg-black/5 hover:bg-black/10 text-black border-none" @click="goBack">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

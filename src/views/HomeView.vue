@@ -22,44 +22,13 @@ function scrollToFeatures() {
 
 <template>
   <div class="min-h-screen bg-base-100 font-sans text-base-content">
-    <!-- Navbar -->
-    <div class="navbar bg-base-100 fixed top-0 z-50 border-b border-base-300 h-16">
-      <div class="container mx-auto px-4 flex justify-between">
-        <div class="navbar-start w-auto">
-          <div class="dropdown lg:hidden">
-            <div tabindex="0" role="button" class="btn btn-ghost btn-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-            </div>
-            <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-base-100 rounded-box w-52 border border-base-300">
-              <li><a href="#features">课程特色</a></li>
-              <li><a href="#teachers">师资力量</a></li>
-              <li><a href="#about">关于我们</a></li>
-            </ul>
-          </div>
-          <a class="text-xl font-bold tracking-tight flex items-center gap-2 ml-2 lg:ml-0" href="#">
-            <span class="text-2xl">🎓</span> OH NO! Teachers
-          </a>
-        </div>
-        <div class="navbar-center hidden lg:flex">
-          <ul class="menu menu-horizontal px-1 font-medium text-sm gap-6">
-            <li><a href="#features" class="hover:text-primary transition-colors">课程特色</a></li>
-            <li><a href="#teachers" class="hover:text-primary transition-colors">师资力量</a></li>
-            <li><a href="#about" class="hover:text-primary transition-colors">关于我们</a></li>
-          </ul>
-        </div>
-        <div class="navbar-end w-auto">
-          <a class="btn btn-primary btn-sm px-6" @click="startGame">立即入学</a>
-        </div>
-      </div>
-    </div>
-
     <!-- Hero Section -->
     <div class="hero min-h-screen bg-base-100 pt-20">
       <div class="container mx-auto px-4 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
         <div class="flex-1 text-center lg:text-left animate__animated animate__fadeInUp">
           <h1 class="text-5xl lg:text-7xl font-bold tracking-tighter leading-tight mb-6">
             完蛋！<br/>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-600">我被老师包围了！</span>
+            <span class="text-transparent bg-clip-text bg-linear-to-r from-neutral-900 to-neutral-600">我被老师包围了！</span>
           </h1>
           <p class="text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
             国内首款沉浸式 AI 互动教学平台。告别枯燥网课，与性格迥异的 AI 导师建立羁绊，在“恋爱”般的体验中掌握硬核知识。
