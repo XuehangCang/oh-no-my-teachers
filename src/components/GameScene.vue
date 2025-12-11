@@ -4,6 +4,7 @@ import { useGameStore } from '../stores/game';
 import DialogueBox from './DialogueBox.vue';
 import type { Choice } from '../types/game';
 import { useRouter } from 'vue-router';
+import bgClassroom from '../assets/images/bg_classroom.png';
 
 const store = useGameStore();
 const router = useRouter();
@@ -38,7 +39,7 @@ function handleChoice(choice: Choice) {
 <template>
   <div class="relative w-full h-full bg-base-200 overflow-hidden">
     <!-- Background (Classroom) -->
-    <div class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/f5f5f5/cccccc?text=Classroom+Background')] bg-cover bg-center"></div>
+    <div class="absolute inset-0 bg-cover bg-center" :style="{ backgroundImage: `url(${bgClassroom})` }"></div>
 
     <!-- Teacher Avatar -->
     <div v-if="teacher" class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-[80%] transition-all duration-500">
