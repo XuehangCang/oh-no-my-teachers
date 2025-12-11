@@ -63,59 +63,43 @@ function handleClick() {
 </script>
 
 <template>
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-full max-w-4xl px-4 z-30" @click="handleClick">
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-full max-w-3xl px-4 z-30" @click="handleClick">
     
     <!-- Choices (Floating above dialogue) -->
     <div v-if="showChoices" class="flex flex-col items-center gap-3 mb-6 w-full animate__animated animate__fadeInUp">
       <button 
         v-for="choice in node.choices" 
         :key="choice.id"
-        class="btn btn-lg w-full max-w-2xl bg-base-100/80 backdrop-blur-md border-primary/30 hover:bg-primary hover:border-primary hover:text-primary-content transition-all duration-300 shadow-lg group relative overflow-hidden"
+        class="btn btn-lg w-full max-w-xl bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300 text-black font-normal shadow-sm transition-all duration-200"
         @click.stop="emit('choice', choice)"
       >
-        <div class="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer"></div>
-        <span class="mr-2 opacity-70">➤</span> {{ choice.text }}
+        {{ choice.text }}
       </button>
     </div>
 
     <!-- Dialogue Box Container -->
-    <div class="relative bg-black/60 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 shadow-[0_0_30px_rgba(0,0,0,0.3)] overflow-hidden group cursor-pointer hover:border-white/20 transition-all duration-300">
+    <div class="relative bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl p-6 shadow-lg cursor-pointer transition-all duration-300">
       
-      <!-- Tech Background Grid -->
-      <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[20px_20px] pointer-events-none"></div>
-      
-      <!-- Glowing Corner Accents -->
-      <div class="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-primary/50 rounded-tl-3xl opacity-50"></div>
-      <div class="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-primary/50 rounded-br-3xl opacity-50"></div>
-
-      <!-- Header: Speaker & Status -->
-      <div class="flex items-center gap-3 mb-3 relative z-10">
-        <div v-if="node.speaker" class="px-3 py-1 bg-primary/20 border border-primary/30 rounded-full text-primary font-bold text-sm tracking-wider uppercase flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-          {{ node.speaker }}
-        </div>
-        <div class="h-px grow bg-linear-to-r from-white/10 to-transparent"></div>
+      <!-- Header: Speaker -->
+      <div v-if="node.speaker" class="mb-2">
+        <span class="font-bold text-sm text-gray-900">{{ node.speaker }}</span>
       </div>
 
       <!-- Text Content -->
-      <p class="text-lg md:text-xl leading-relaxed font-light text-white/90 relative z-10 min-h-12">
-        {{ displayedText }}
-        <span v-if="isTyping" class="inline-block w-2 h-5 bg-primary ml-1 animate-pulse align-middle shadow-[0_0_10px_rgba(var(--p),0.8)]"></span>
+      <p class="text-lg leading-relaxed text-gray-800 min-h-[3rem]">
+        {{ displayedText }}<span v-if="isTyping" class="animate-pulse">|</span>
       </p>
-
+      
       <!-- Continue Indicator -->
-      <div v-if="!isTyping && !node.choices && node.next" class="absolute bottom-4 right-6 animate-bounce text-primary/80 flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-70">
-        Click to Continue <span class="text-lg">▼</span>
+      <div v-if="!isTyping && !showChoices" class="absolute bottom-4 right-4 text-gray-400 animate-bounce">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-@keyframes shimmer {
-  100% { transform: translateX(100%); }
-}
-.group-hover\:animate-shimmer:hover {
-  animation: shimmer 1.5s infinite;
-}
+/* Minimal styles */
 </style>

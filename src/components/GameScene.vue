@@ -57,9 +57,9 @@ function goBack() {
     <div class="absolute inset-0 bg-black/10 pointer-events-none"></div>
 
     <!-- HUD: Top Bar -->
-    <div class="absolute top-0 left-0 w-full p-4 flex justify-between items-start z-20 bg-linear-to-b from-black/60 to-transparent">
+    <div class="absolute top-0 left-0 w-full p-4 flex justify-between items-start z-20">
       <!-- Back Button -->
-      <button class="btn btn-circle btn-ghost text-white hover:bg-white/20" @click="goBack">
+      <button class="btn btn-circle btn-ghost bg-white/10 hover:bg-white/20 text-white border-none" @click="goBack">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
@@ -67,22 +67,22 @@ function goBack() {
 
       <!-- Teacher Info & Affinity -->
       <div v-if="teacher" class="flex flex-col items-end">
-        <div class="flex items-center gap-2 bg-black/30 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
+        <div class="flex items-center gap-3 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-sm border border-gray-200">
           <div class="avatar">
-            <div class="w-8 h-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+            <div class="w-8 h-8 rounded-full ring ring-gray-200 ring-offset-base-100 ring-offset-1">
               <img :src="teacher.avatar" />
             </div>
           </div>
           <div class="flex flex-col">
-            <span class="text-white font-bold text-sm leading-none">{{ teacher.name }}</span>
-            <span class="text-white/70 text-xs leading-none mt-1">{{ teacher.subject }}</span>
+            <span class="text-gray-900 font-bold text-sm leading-none">{{ teacher.name }}</span>
+            <span class="text-gray-500 text-xs leading-none mt-1">{{ teacher.subject }}</span>
           </div>
-          <div class="divider divider-horizontal mx-0 before:bg-white/20 after:bg-white/20"></div>
-          <div class="flex items-center gap-1 text-pink-400 font-bold">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current animate-pulse" viewBox="0 0 20 20">
+          <div class="w-px h-6 bg-gray-200 mx-1"></div>
+          <div class="flex items-center gap-1 text-red-500 font-bold">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
             </svg>
-            <span>{{ affinity }}</span>
+            <span class="text-gray-900">{{ affinity }}</span>
           </div>
         </div>
       </div>
