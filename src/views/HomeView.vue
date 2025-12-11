@@ -78,7 +78,7 @@ function scrollToFeatures() {
         <h2 class="text-3xl font-bold text-center mb-4 tracking-tight">金牌讲师团</h2>
         <p class="text-center text-lg mb-16 text-gray-500">选择你心仪的导师，开启专属学习路线</p>
         
-        <div class="flex flex-wrap justify-center gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
           <TeacherCard 
             v-for="teacher in teachers" 
             :key="teacher.id" 

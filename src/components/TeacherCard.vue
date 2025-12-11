@@ -11,7 +11,7 @@ defineEmits<{
 </script>
 
 <template>
-  <div class="card w-80 bg-base-100 border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer rounded-lg overflow-hidden group" @click="$emit('select', teacher.id)">
+  <div class="card w-full bg-base-100 border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer rounded-lg overflow-hidden group" @click="$emit('select', teacher.id)">
     <figure class="h-64 overflow-hidden bg-gray-100">
       <img :src="teacher.avatar" :alt="teacher.name" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" />
     </figure>

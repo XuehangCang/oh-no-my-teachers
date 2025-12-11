@@ -17,7 +17,7 @@ function handleSelect(id: string) {
   <div class="min-h-screen bg-base-200 p-8 pt-24 flex flex-col items-center">
     <h1 class="text-4xl font-bold mb-8 text-primary animate__animated animate__fadeInDown">选择你的导师</h1>
     
-    <div class="flex flex-wrap justify-center gap-8 animate__animated animate__fadeInUp">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 w-full max-w-7xl animate__animated animate__fadeInUp">
       <TeacherCard 
         v-for="teacher in teachers" 
         :key="teacher.id" 
