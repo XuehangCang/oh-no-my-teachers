@@ -70,7 +70,7 @@ function handleClick() {
       <button 
         v-for="choice in node.choices" 
         :key="choice.id"
-        class="btn btn-lg w-full max-w-xl bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300 text-black font-normal shadow-sm transition-all duration-200"
+        class="btn w-full max-w-xl bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300 text-black font-normal shadow-sm transition-all duration-200 rounded-2xl h-auto py-3 min-h-12"
         @click.stop="emit('choice', choice)"
       >
         {{ choice.text }}
@@ -78,7 +78,7 @@ function handleClick() {
     </div>
 
     <!-- Dialogue Box Container -->
-    <div class="relative bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl p-6 shadow-lg cursor-pointer transition-all duration-300">
+    <div class="relative bg-white/95 backdrop-blur-md border border-gray-200 rounded-2xl p-6 shadow-xl cursor-pointer transition-all duration-300">
       
       <!-- Header: Speaker -->
       <div v-if="node.speaker" class="mb-2">

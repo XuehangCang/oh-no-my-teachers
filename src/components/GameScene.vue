@@ -54,12 +54,12 @@ function goBack() {
     ></div>
     
     <!-- Overlay for better text readability -->
-    <div class="absolute inset-0 bg-black/10 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-white/40 backdrop-blur-sm pointer-events-none"></div>
 
     <!-- HUD: Top Bar -->
     <div class="absolute top-0 left-0 w-full p-4 flex justify-between items-start z-20">
       <!-- Back Button -->
-      <button class="btn btn-circle btn-ghost bg-white/10 hover:bg-white/20 text-white border-none" @click="goBack">
+      <button class="btn btn-circle btn-ghost bg-black/5 hover:bg-black/10 text-black border-none" @click="goBack">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
