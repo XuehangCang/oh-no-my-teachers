@@ -90,9 +90,9 @@ function goBack() {
 
     <!-- Main Content Split -->
     <div class="absolute inset-0 flex z-10">
-      <!-- Left: Teacher -->
-      <div class="w-1/2 h-full flex items-end justify-center relative">
-        <div v-if="teacher" class="h-[85%] transition-all duration-500">
+      <!-- Left: Teacher (Reduced width) -->
+      <div class="w-1/3 h-full flex items-end justify-center relative">
+        <div v-if="teacher" class="h-[75%] transition-all duration-500">
           <img 
             :src="teacher.avatar" 
             :alt="teacher.name" 
@@ -101,8 +101,8 @@ function goBack() {
         </div>
       </div>
 
-      <!-- Right: Dialogue -->
-      <div class="w-1/2 h-full flex flex-col justify-center items-center p-12 bg-white/80 backdrop-blur-xl border-l border-white/20 shadow-2xl">
+      <!-- Right: Dialogue (Expanded width) -->
+      <div class="w-2/3 h-full flex flex-col justify-center items-center p-12 bg-white/80 backdrop-blur-xl border-l border-white/20 shadow-2xl">
         <DialogueBox 
           v-if="node" 
           :node="node" 

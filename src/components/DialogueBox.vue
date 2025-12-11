@@ -68,12 +68,21 @@ function handleClick() {
     <!-- Dialogue Box Container -->
     <div class="relative w-full cursor-pointer transition-all duration-300 mb-8">
       
-      <!-- Header: Speaker -->
-      <div v-if="node.speaker" class="mb-4 flex items-center gap-3">
-        <div class="w-8 h-8 rounded-sm bg-green-500 flex items-center justify-center text-white font-bold text-xs">
-          AI
+      <!-- Header: Speaker & Phase -->
+      <div class="mb-4 flex items-center justify-between">
+        <div v-if="node.speaker" class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-sm bg-green-500 flex items-center justify-center text-white font-bold text-xs">
+            AI
+          </div>
+          <span class="font-bold text-sm text-gray-900">{{ node.speaker }}</span>
         </div>
-        <span class="font-bold text-sm text-gray-900">{{ node.speaker }}</span>
+        
+        <!-- Phase Badge -->
+        <div class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+          :class="node.type === 'quiz' ? 'bg-red-100 text-red-600' : 'bg-blue-100 text-blue-600'"
+        >
+          {{ node.type === 'quiz' ? 'Exam Mode' : 'Lecture Mode' }}
+        </div>
       </div>
 
       <!-- Text Content -->
