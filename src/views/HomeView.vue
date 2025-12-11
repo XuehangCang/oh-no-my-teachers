@@ -13,6 +13,10 @@ function handleSelect(id: string) {
   // In HomeView, clicking a teacher card also starts the game/selection flow
   router.push('/select');
 }
+
+function scrollToFeatures() {
+  document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+}
 </script>
 
 <template>
@@ -72,7 +76,7 @@ function handleSelect(id: string) {
             <button class="btn btn-primary btn-lg shadow-lg hover:scale-105 transition-transform" @click="startGame">
               开始上课
             </button>
-            <button class="btn btn-outline btn-lg" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">
+            <button class="btn btn-outline btn-lg" @click="scrollToFeatures">
               了解更多
             </button>
           </div>
