@@ -11,6 +11,10 @@ const router = useRouter();
 
 const teacher = computed(() => store.currentTeacher);
 const node = computed(() => store.currentScriptNode);
+const affinity = computed(() => {
+  if (!teacher.value) return 0;
+  return store.state.affinity[teacher.value.id] || 0;
+});
 
 function handleNext(nextId: string) {
   if (nextId === '') {
@@ -34,19 +38,62 @@ function handleChoice(choice: Choice) {
     store.nextNode(choice.nextNodeId);
   }
 }
+
+function goBack() {
+  // Confirm dialog could be added here
+  router.push('/select');
+}
 </script>
 
 <template>
-  <div class="relative w-full h-full bg-base-200 overflow-hidden">
-    <!-- Background (Classroom) -->
-    <div class="absolute inset-0 bg-cover bg-center" :style="{ backgroundImage: `url(${bgClassroom})` }"></div>
+  <div class="relative w-full h-full bg-base-200 overflow-hidden font-sans">
+    <!-- Background (Classroom) with Ken Burns effect -->
+    <div 
+      class="absolute inset-0 bg-cover bg-center animate-ken-burns" 
+      :style="{ backgroundImage: `url(${bgClassroom})` }"
+    ></div>
+    
+    <!-- Overlay for better text readability -->
+    <div class="absolute inset-0 bg-black/10 pointer-events-none"></div>
+
+    <!-- HUD: Top Bar -->
+    <div class="absolute top-0 left-0 w-full p-4 flex justify-between items-start z-20 bg-linear-to-b from-black/60 to-transparent">
+      <!-- Back Button -->
+      <button class="btn btn-circle btn-ghost text-white hover:bg-white/20" @click="goBack">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+      </button>
+
+      <!-- Teacher Info & Affinity -->
+      <div v-if="teacher" class="flex flex-col items-end">
+        <div class="flex items-center gap-2 bg-black/30 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
+          <div class="avatar">
+            <div class="w-8 h-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              <img :src="teacher.avatar" />
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-white font-bold text-sm leading-none">{{ teacher.name }}</span>
+            <span class="text-white/70 text-xs leading-none mt-1">{{ teacher.subject }}</span>
+          </div>
+          <div class="divider divider-horizontal mx-0 before:bg-white/20 after:bg-white/20"></div>
+          <div class="flex items-center gap-1 text-pink-400 font-bold">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current animate-pulse" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+            </svg>
+            <span>{{ affinity }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Teacher Avatar -->
-    <div v-if="teacher" class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-[80%] transition-all duration-500">
+    <div v-if="teacher" class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-[85%] transition-all duration-500 z-10 pointer-events-none">
       <img 
         :src="teacher.avatar" 
         :alt="teacher.name" 
-        class="h-full object-contain drop-shadow-2xl animate__animated animate__fadeInUp"
+        class="h-full object-contain drop-shadow-2xl animate__animated animate__fadeInUp animate-breathe"
       />
     </div>
 
@@ -59,3 +106,21 @@ function handleChoice(choice: Choice) {
     />
   </div>
 </template>
+
+<style scoped>
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+.animate-breathe {
+  animation: breathe 6s ease-in-out infinite;
+}
+
+@keyframes ken-burns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+.animate-ken-burns {
+  animation: ken-burns 20s ease-out infinite alternate;
+}
+</style>
