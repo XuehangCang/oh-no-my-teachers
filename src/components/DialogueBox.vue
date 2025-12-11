@@ -63,10 +63,35 @@ function handleClick() {
 </script>
 
 <template>
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-full max-w-3xl px-4 z-30" @click="handleClick">
+  <div class="w-full max-w-3xl mx-auto flex flex-col justify-center h-full" @click="handleClick">
     
-    <!-- Choices (Floating above dialogue) -->
-    <div v-if="showChoices" class="flex flex-col items-center gap-3 mb-6 w-full animate__animated animate__fadeInUp">
+    <!-- Dialogue Box Container -->
+    <div class="relative w-full cursor-pointer transition-all duration-300 mb-8">
+      
+      <!-- Header: Speaker -->
+      <div v-if="node.speaker" class="mb-4 flex items-center gap-3">
+        <div class="w-8 h-8 rounded-sm bg-green-500 flex items-center justify-center text-white font-bold text-xs">
+          AI
+        </div>
+        <span class="font-bold text-sm text-gray-900">{{ node.speaker }}</span>
+      </div>
+
+      <!-- Text Content -->
+      <p class="text-lg leading-relaxed text-gray-800 min-h-12 whitespace-pre-wrap">
+        {{ displayedText }}<span v-if="isTyping" class="inline-block w-2 h-5 ml-1 bg-black animate-pulse align-middle"></span>
+      </p>
+      
+      <!-- Continue Indicator -->
+      <div v-if="!isTyping && !showChoices" class="mt-4 text-gray-400 text-sm flex items-center gap-2 animate-pulse">
+        <span>Click to continue</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Choices (Answers) -->
+    <div v-if="showChoices" class="flex flex-col items-center gap-3 w-full animate__animated animate__fadeInUp">
       <button 
         v-for="choice in node.choices" 
         :key="choice.id"
@@ -75,27 +100,6 @@ function handleClick() {
       >
         {{ choice.text }}
       </button>
-    </div>
-
-    <!-- Dialogue Box Container -->
-    <div class="relative bg-white/95 backdrop-blur-md border border-gray-200 rounded-2xl p-6 shadow-xl cursor-pointer transition-all duration-300">
-      
-      <!-- Header: Speaker -->
-      <div v-if="node.speaker" class="mb-2">
-        <span class="font-bold text-sm text-gray-900">{{ node.speaker }}</span>
-      </div>
-
-      <!-- Text Content -->
-      <p class="text-lg leading-relaxed text-gray-800 min-h-[3rem]">
-        {{ displayedText }}<span v-if="isTyping" class="animate-pulse">|</span>
-      </p>
-      
-      <!-- Continue Indicator -->
-      <div v-if="!isTyping && !showChoices" class="absolute bottom-4 right-4 text-gray-400 animate-bounce">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-        </svg>
-      </div>
     </div>
   </div>
 </template>

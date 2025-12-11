@@ -88,22 +88,29 @@ function goBack() {
       </div>
     </div>
 
-    <!-- Teacher Avatar -->
-    <div v-if="teacher" class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-[85%] transition-all duration-500 z-10 pointer-events-none">
-      <img 
-        :src="teacher.avatar" 
-        :alt="teacher.name" 
-        class="h-full object-contain drop-shadow-2xl animate__animated animate__fadeInUp animate-breathe"
-      />
-    </div>
+    <!-- Main Content Split -->
+    <div class="absolute inset-0 flex z-10">
+      <!-- Left: Teacher -->
+      <div class="w-1/2 h-full flex items-end justify-center relative">
+        <div v-if="teacher" class="h-[85%] transition-all duration-500">
+          <img 
+            :src="teacher.avatar" 
+            :alt="teacher.name" 
+            class="h-full object-contain drop-shadow-2xl animate__animated animate__fadeInUp animate-breathe"
+          />
+        </div>
+      </div>
 
-    <!-- Dialogue Interface -->
-    <DialogueBox 
-      v-if="node" 
-      :node="node" 
-      @next="handleNext"
-      @choice="handleChoice"
-    />
+      <!-- Right: Dialogue -->
+      <div class="w-1/2 h-full flex flex-col justify-center items-center p-12 bg-white/80 backdrop-blur-xl border-l border-white/20 shadow-2xl">
+        <DialogueBox 
+          v-if="node" 
+          :node="node" 
+          @next="handleNext"
+          @choice="handleChoice"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
